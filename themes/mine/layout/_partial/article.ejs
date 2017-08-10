@@ -3,6 +3,7 @@
         <div class="articleCon">
             <header class="article-header">
                 <h1 itemprop="name">
+                    <%- list_categories(post.categories, {show_count: false}) %>
                     <a href="<%- url_for(post.path) %>" class="article-title"><%- post.title %></a>
                 </h1>
             </header>
@@ -13,6 +14,9 @@
             <div class="article-inner">
                 <div class="article-entry" itemprop="articleBody">
                     <%- post.content %>
+                </div>
+                <div class="article-tags">
+                    <%- list_tags(post.tags, {show_count: false, class: 'article-tags', style: 'div'}) %>
                 </div>
                 <%- partial('_partial/post/nav') %>
             </div>

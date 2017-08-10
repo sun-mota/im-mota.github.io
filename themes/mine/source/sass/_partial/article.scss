@@ -29,6 +29,20 @@ $article-p-img: 100%;
         .article-header {
             text-align: left;
             margin: $article-header-margin;
+            & > h1{
+                display: flex;
+                flex-direction: row;
+                align-content: center;
+                font-size: $article-title-footSize;
+                @extend %underline-from-center;
+            }
+            .category-list-item{
+                text-transform: capitalize;
+                &:after{
+                    content: ':';
+                    margin-right: 5px;
+                }
+            }
 
             a {
                 color: $article-p-color;
@@ -48,6 +62,18 @@ $article-p-img: 100%;
         .article-inner {
             @import 'post/morelink';
             @include morelink;
+        }
+
+        .article-tags {
+            // margin-top: $article-header-margin;
+            margin: $article-entry-marigin;
+            color: $article-entry-color;
+            .article-tags-link{
+                color: $article-entry-color;
+                &:before{
+                    content: '#';
+                }
+            }
         }
 
         .article-entry {

@@ -1,18 +1,18 @@
 //About style
-$aboutPadding: 3.5em;
+$aboutPadding: 1em 0 2em;
 $aboutTitleSize: 1.75em;
 $aboutLineHeight: 1;
 $aboutTitleColor: rgb(93, 93, 93);
 $aboutChatHeight:5em;
 $aboutChatLineHeight: 2em;
-$aboutListPadding: 3% 0;
-$aboutShowMargin: 15%;
-$aboutImgWidth: 90%;
+$aboutListPadding: .5em 0;
+$aboutShowMargin: 3em;
 @mixin aboutTitle {
     color: $blog-main-color;
     font-family: cathsgbr;
     font-size: $aboutTitleSize;
     line-height: $aboutLineHeight;
+    margin: 0.8em 0;
     &:hover {
         color: $aboutTitleColor;
     }
@@ -20,7 +20,7 @@ $aboutImgWidth: 90%;
 
 @mixin aboutChat {
     p {
-        height: $aboutChatHeight;
+        // height: $aboutChatHeight;
         line-height: $aboutChatLineHeight;
     }
 }
@@ -38,16 +38,14 @@ $aboutImgWidth: 90%;
 }
 
 @mixin about {
-    padding: $aboutPadding;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: $articleFont;
-    .about-photo {
-        img {
-            width: $aboutImgWidth;
-        }
-    }
+    width: 95%;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: $aboutPadding;
     .about-body {
         .about-chat {
             @include aboutChat;
@@ -60,10 +58,14 @@ $aboutImgWidth: 90%;
         .about-talent {
             margin-top: $aboutShowMargin;
         }
+        .about-social{
+        margin-top: $aboutShowMargin;
+        }
         .about-title {
             @include aboutTitle;
         }
     }
+
 }
 
 .about-main {
