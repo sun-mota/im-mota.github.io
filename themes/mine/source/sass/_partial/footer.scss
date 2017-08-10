@@ -1,0 +1,26 @@
+//Footer setting
+$footerFontWeight: 700;
+$footerPadding: 1% 0;
+$footerMargin: 2%;
+$footerSize: 1em;
+$footerColor: #364F6B;
+@mixin footer {
+    text-align: center;
+    color: $blog-main-color;
+    font-family: $logoFont;
+    font-weight: $footerFontWeight;
+    font-size: $footerSize;
+    padding: $footerPadding;
+    margin-top: $footerMargin;
+    .inner {
+        a {
+            font-size: .8em;
+            color: $footerColor;
+            font-family: $logoFont;
+        }
+    }
+}
+
+.blog-footer {
+    @include footer;    
+}
