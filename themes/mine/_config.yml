@@ -20,7 +20,7 @@ chat: "글쓴이: mota<br>실리콘 밸리 회사 Roku에서 시니어 UX 엔지
 # SubNav
 subnav:
 #   GitHub: 
-  facebook: https://www.facebook.com/eunsunmota
+  # facebook: https://www.facebook.com/eunsunmota
   linkedIn: https://www.linkedin.com/in/eunsunmota/
 #   zhiHu: 
 
@@ -43,7 +43,7 @@ favicon: http://www.fairylightsfactory.com/wp-content/uploads/2015/11/35-dark-bl
 baidu_analytics: 
 
 # Google Analytics
-# google_analytics: UA-75314797-1
+google_analytics: UA-105630964-1
 
 # comments
 disqus: im-mota-github-io
