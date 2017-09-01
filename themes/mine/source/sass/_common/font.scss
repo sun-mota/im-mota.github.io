@@ -1,11 +1,15 @@
 
-@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+// @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+// @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+
 
 //Font Style
-$blog-main-font: 'Jeju Myeongjo', serif;
-$articleFont: 'Jeju Myeongjo', cursive;
-$logoFont: 'Nanum Pen Script', serif;
+$blog-main-font: 'Jeju Gothic', sans-serif;
+$articleFont: 'Noto Sans KR', sans-serif;
+$logoFont: 'Jeju Gothic', sans-serif;
 
 @font-face {
     font-family: 'iconfont';

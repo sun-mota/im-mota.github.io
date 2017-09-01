@@ -8,8 +8,8 @@ $aboutChatLineHeight: 2em;
 $aboutListPadding: .5em 0;
 $aboutShowMargin: 3em;
 @mixin aboutTitle {
+    font-family: $blog-main-font;
     color: $blog-main-color;
-    font-family: cathsgbr;
     font-size: $aboutTitleSize;
     line-height: $aboutLineHeight;
     margin: 0.8em 0;
@@ -44,7 +44,7 @@ $aboutShowMargin: 3em;
     font-family: $articleFont;
     width: 95%;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 768px;
     padding: $aboutPadding;
     .about-body {
         .about-chat {

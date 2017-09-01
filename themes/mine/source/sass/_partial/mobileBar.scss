@@ -49,8 +49,9 @@ $mobile-logo-backgroundSize: 30px;
           left: $mobile-logo-left;
           margin-left: $mobile-logo-marginLeft;
           background-size: $mobile-logo-backgroundSize;
-          font-family: cathsgbr;
+          font-family: $logoFont;
           color:$blog-main-color;
       }
   }
 }
+;

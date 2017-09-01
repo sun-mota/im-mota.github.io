@@ -4,7 +4,8 @@ title: About
 permalink: /about/
 ---
 
-실리콘 밸리 회사 Roku에서 시니어 UX 엔지니어로 일하고 있으며, Javascript를 주언어로 사용하고 있습니다.
+실리콘 밸리 회사 Roku에서 시니어 UX 엔지니어로 일하고 있으며,
+Javascript를 주언어로 사용하고 있습니다.
 
 ### More Information
 

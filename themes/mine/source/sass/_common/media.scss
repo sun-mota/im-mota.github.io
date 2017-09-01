@@ -21,6 +21,9 @@ $media-archives-margin: 0 auto;
 $media-archivesPhoto-width: 98%;
 $media-archives-fontSize: 14px;
 
+.sidebar {
+    display: none;
+}
 
 @mixin media {
      @media screen and (max-width:$media-maxWidth){
@@ -103,6 +106,7 @@ $media-archives-fontSize: 14px;
                 }
             }
             .sidebar {
+              display: inherit;
               z-index: 100;
               position: fixed;
               background-color: #fff;

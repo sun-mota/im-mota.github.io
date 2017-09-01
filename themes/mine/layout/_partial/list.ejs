@@ -4,7 +4,9 @@
     <div class= "category-item">
     <h3><%= cat.name %></h3>
       <% cat.posts.each(function(p) { %>
+        <% if (p._id !== post._id) {%>
         <a href="<%- url_for(p.path) %>"><ul><%= p.title %></ul><sub class="date"><sup><%= full_date(p.date, 'MMM Do YYYY') %></sup></sub></a>
+        <% } %>
       <% }) %>
     </div>
   <% }) %>

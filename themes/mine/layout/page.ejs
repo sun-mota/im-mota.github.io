@@ -21,8 +21,8 @@
               <% for (var i in theme.subnav){ %>
                 <li>
                   <%=i %>:
-                  <a href="<%=theme.subnav[i] %>">
-                    @<%=config.title %>
+                  <a href="<%=theme.subnav[i] %>" target="_new">
+                    @<%= config.title %>
                   </a>
                 </li>
                 <% } %>

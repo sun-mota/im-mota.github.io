@@ -10,7 +10,7 @@ $article-title-footSize: 20px; //Article entry setting
 $article-entry-marigin: 10px 0;
 $article-entry-color: #969b9f;
 $article-entry-fontSize: 100%;
-$article-entry-font: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif; //Article p setting
+$article-entry-font: $blog-main-font;
 $article-p-fontSize: 95%;
 $article-p-fontFamily: $articleFont;//Monda, "PingFang SC", "Microsoft YaHei", sans-serif;
 $article-p-lineHeight: 1.8;
@@ -20,6 +20,7 @@ $article-p-margin: 2% 0;
 $article-p-img: 100%;
 @mixin article {
     .article-main {
+        font-family: $blog-main-font;
         overflow: hidden;
         padding: $article-padding;
         border-bottom: $article-borderBottom solid $article-borderBottomColor;
@@ -52,7 +53,7 @@ $article-p-img: 100%;
                     font-size: $article-title-footSize;
                     text-transform: uppercase;
                     margin-bottom: .2em;
-                    color: $article-p-color;
+                    color:  $blog-main-color;
                 }
                 a{  
                     display: flex;
@@ -98,7 +99,7 @@ $article-p-img: 100%;
             }
 
             a {
-                color: $article-p-color;
+                color:  $blog-main-color;
             }
         }
 
