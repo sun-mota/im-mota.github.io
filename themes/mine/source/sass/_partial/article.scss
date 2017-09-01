@@ -1,8 +1,8 @@
 //Article setting
-$article-padding: 1em 0 2em;
+$article-padding: 1em 0 2em 0;
 $article-borderBottom: 1px;
 $article-borderBottomColor: #ddd;
-$article-maxWidth: 666px;
+$article-maxWidth: 768px / 0.7;
 $article-margin: 0 auto; //Article header setting
 $article-header-margin: 0.8em 0;
 $article-header-color: rgb(93, 93, 93); //Article title setting
@@ -12,7 +12,7 @@ $article-entry-color: #969b9f;
 $article-entry-fontSize: 100%;
 $article-entry-font: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif; //Article p setting
 $article-p-fontSize: 95%;
-$article-p-fontFamily: Monda, "PingFang SC", "Microsoft YaHei", sans-serif;
+$article-p-fontFamily: $articleFont;//Monda, "PingFang SC", "Microsoft YaHei", sans-serif;
 $article-p-lineHeight: 1.8;
 $article-p-letterSpacing: 0.12px;
 $article-p-color: #364F6B;
@@ -23,8 +23,61 @@ $article-p-img: 100%;
         overflow: hidden;
         padding: $article-padding;
         border-bottom: $article-borderBottom solid $article-borderBottomColor;
-        max-width: $article-maxWidth;
         margin: $article-margin;
+        max-width: $article-maxWidth;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        box-sizing: border-box;
+
+        .main{
+            box-sizing: border-box;
+            padding: 0 2em;
+            max-width: 70%;
+            width: 70%;
+        }
+        .post-list{
+            box-sizing: border-box;
+            padding-right: 2em;
+            width: 30%;
+            overflow: hidden;
+            .category-item{
+                margin: 0.5em 0;
+                padding: 0.5em 0;
+                line-height: 1.7;
+                border-bottom: 1px solid grey;
+                h3{
+                    display: block;
+                    font-size: $article-title-footSize;
+                    text-transform: uppercase;
+                    margin-bottom: .2em;
+                    color: $article-p-color;
+                }
+                a{  
+                    display: flex;
+                    width: 100%;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    font-family:$article-p-fontFamily;
+                    justify-content: space-between;
+                    &:hover {
+                        color: $blog-main-color;
+                    }
+                    .date{
+                        // float: right;
+                        white-space: nowrap;
+                        opacity: .8;
+                    }
+                    ul{
+                        max-width: calc(100% - 80px);
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
 
         .article-header {
             text-align: left;

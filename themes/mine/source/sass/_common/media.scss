@@ -36,7 +36,13 @@ $media-archives-fontSize: 14px;
                 }
             }
             .article-main {
-                .bookmark {
+                .main{
+                    width: 100%;
+                    padding: 0;
+                    max-width: 100%;
+                    width: 100%;
+                }
+                .post-list, .bookmark {
                         display: none;
                     }
                 .article-entry {

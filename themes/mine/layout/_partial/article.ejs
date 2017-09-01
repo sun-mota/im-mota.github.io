@@ -1,5 +1,6 @@
 <% if(true || is_post()) { %>
 <article class="article-main" itemscope itemprop="blogPost">
+    <div class="main">
         <div class="articleCon">
             <header class="article-header">
                 <h1 itemprop="name">
@@ -27,5 +28,7 @@
         <% if (theme.duoshuo){%>
             <%- partial('_partial/comments/duoshuo.ejs') %>
         <% } %>
-</article>
+    </div>
+<%- partial('./list') %>  
+</article> 
 <% } %>
