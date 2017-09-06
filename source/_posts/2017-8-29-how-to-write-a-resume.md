@@ -104,6 +104,9 @@ LinkedIn을 참고해서 좀 더 실리콘 밸리에서 흔하게 쓰이는
 ### 그리고 영어...
 그리고 뭐니뭐니 해도 올바른 단어, 문법으로 작성하셔야겠죠?
 아무리 엉터리 영어를 써도 알아먹는 다지만, 
-지원서의 첫 인상인 이력서에서까지 엉터리이면 좀 그렇잖아요.
+지원서의 첫 인상인 이력서에서 엉터리이면 좀 그렇잖아요.
 
 - - - 
+부끄럽지만 제 이력서를 참고로 링크합니다. >> [Mota's Resume](https://docs.google.com/document/d/1mqXitjHwElWJillnQ5EPUEIiT7tWJ3eYnZsk6lqtKiM/edit?usp=sharing)
+
+- - -
