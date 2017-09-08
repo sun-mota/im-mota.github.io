@@ -1,6 +1,7 @@
 
 <div class="post-list">
   <% site.categories.each(function(cat) { %>
+    <% if (cat.posts.length > 1) {%>
     <div class= "category-item">
     <h3><%= cat.name %></h3>
       <% cat.posts.each(function(p) { %>
@@ -9,5 +10,6 @@
         <% } %>
       <% }) %>
     </div>
+    <% } %>
   <% }) %>
 </div>
