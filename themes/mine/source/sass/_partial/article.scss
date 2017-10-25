@@ -42,7 +42,7 @@ $article-p-img: 100%;
             box-sizing: border-box;
             padding-right: 2em;
             width: 30%;
-            overflow: hidden;
+            // overflow: hidden;
             .category-item{
                 margin: 0.5em 0;
                 padding: 0.5em 0;
@@ -62,6 +62,13 @@ $article-p-img: 100%;
                     flex-wrap: nowrap;
                     font-family:$article-p-fontFamily;
                     justify-content: space-between;
+                    align-items: center;
+                    margin: 0 -0.5em;
+                    padding: 0 0.5em;
+                    &.selected{
+                        color: $blog-main-color;
+                        background: rgba(72, 61, 139, 0.1);                        
+                    }
                     &:hover {
                         color: $blog-main-color;
                     }
