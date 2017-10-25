@@ -1,7 +1,11 @@
 //Archives setting
+$article-borderBottom: 1px;
+$article-borderBottomColor: #ddd;
+
 $archivs-margin: 0 auto;
-$archivs-padding: 1em 0 2em;
+$article-padding: 1em 0 2em 0;
 $archivs-lineHeight: 35px;
+$article-maxWidth: 768px / 0.7;
 
 $archives-photo-width: 90%;
 
@@ -14,19 +18,20 @@ $archives-entry-color: rgb(93,93,93);
 
 @mixin archivs {
     .archives-main {
-        padding: $archivs-padding;
-        display: flex;
         font-family: $blog-main-font;
-        margin: $archivs-margin;
-        width: 95%;
-        .archives-photo {
-          margin: 0.8em 0;
-          img {
-            width: $archives-photo-width;
-            margin: $archivs-margin;
-          }
-        }
+        overflow: hidden;
+        padding: $article-padding;
+        border-bottom: $article-borderBottom solid $article-borderBottomColor;
+        margin: $article-margin;
+        max-width: $article-maxWidth;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        box-sizing: border-box;
         .archives-body {
+            box-sizing: border-box;
+            padding: 0 2em;
             ul {
                 line-height: $archivs-lineHeight;
             }

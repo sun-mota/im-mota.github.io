@@ -38,7 +38,7 @@ $media-archives-fontSize: 14px;
                     }
                 }
             }
-            .article-main {
+            .article-main, .archives-main {
                 .main{
                     width: 100%;
                     padding: 0;
@@ -64,6 +64,12 @@ $media-archives-fontSize: 14px;
                 .article-nav-title{
                   font-size: $media-article-fontSize;
                 }
+                
+                .archives-entry {
+                    a {
+                        font-size: $media-article-fontSize;
+                    }
+                }
             }
             .title {
               margin-top: $media-title-margin;
@@ -87,21 +93,6 @@ $media-archives-fontSize: 14px;
                   margin-bottom: $media-about-margin;
                     img {
                         width: $media-about-width;
-                    }
-                }
-            }
-            .archives-main {
-                padding: $media-archives-padding;
-                display: block;
-                .archives-photo {
-                    img {
-                        width: $media-archivesPhoto-width;
-                        margin: $media-archives-margin;
-                    }
-                }
-                .archives-entry {
-                    a {
-                        font-size: $media-article-fontSize;
                     }
                 }
             }
