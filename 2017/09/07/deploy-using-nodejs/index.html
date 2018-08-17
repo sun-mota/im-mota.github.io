@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title>
+      
+        nodeJS로 간단한 Deploy Script 만들기 |
+          
+            실리콘밸리 외노자 이야기
+    </title>
+    <!-- 主css -->
+    <link rel="stylesheet" href="/sass/main.css">
+      <!-- seo -->
+      <meta name="description" content="요즘은 AWS CodeDeploy나 Jenkin등을 이용해 간단한 Deploy tool을 이용한다.이들을 이용하면 간단히 테스트를 붙여 돌릴 수도 있고 버전관리도 쉽게 가능하여 개인적으로도 매우 선호한다.하지만 현 프로젝트를하며 위의 툴을 사용하려니 문제를 만났다.  내부망에서만 접속가능 유지비가 저렴해야함 구축하는데 너무 많은 시간을 투자 하지 말 것 이">
+<meta name="keywords" content="개발자,nodejs,Intergration">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodeJS로 간단한 Deploy Script 만들기">
+<meta property="og:url" content="http://im-gatita.github.io/2017/09/07/deploy-using-nodejs/index.html">
+<meta property="og:site_name" content="실리콘밸리 외노자 이야기">
+<meta property="og:description" content="요즘은 AWS CodeDeploy나 Jenkin등을 이용해 간단한 Deploy tool을 이용한다.이들을 이용하면 간단히 테스트를 붙여 돌릴 수도 있고 버전관리도 쉽게 가능하여 개인적으로도 매우 선호한다.하지만 현 프로젝트를하며 위의 툴을 사용하려니 문제를 만났다.  내부망에서만 접속가능 유지비가 저렴해야함 구축하는데 너무 많은 시간을 투자 하지 말 것 이">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-17T18:20:09.461Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodeJS로 간단한 Deploy Script 만들기">
+<meta name="twitter:description" content="요즘은 AWS CodeDeploy나 Jenkin등을 이용해 간단한 Deploy tool을 이용한다.이들을 이용하면 간단히 테스트를 붙여 돌릴 수도 있고 버전관리도 쉽게 가능하여 개인적으로도 매우 선호한다.하지만 현 프로젝트를하며 위의 툴을 사용하려니 문제를 만났다.  내부망에서만 접속가능 유지비가 저렴해야함 구축하는데 너무 많은 시간을 투자 하지 말 것 이">
+        <!-- facicon -->
+        
+          <link rel="icon" href="http://www.fairylightsfactory.com/wp-content/uploads/2015/11/35-dark-blue1.png">
+          
+            <!-- 统计 -->
+            
+                
+                  <script>
+                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                  
+                    ga('create',  'UA-105630964-1', 'auto');
+                    ga('send', 'pageview');
+                  
+                  </script>
+                  
+                    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+	<body>
+		<div class="main">
+			<div id="mobile-bar">
+    <a class="menu-button"></a>
+    <a class="logo" href="/">실리콘밸리 외노자 이야기</a>
+</div>
+<header class="nav-header">
+    <a href="/" class="logo-link">실리콘밸리 외노자 이야기</a>
+    
+            
+    <ul class="nav nav-list">
+        <li class="nav-list-item"><a href="/">Home</a></li>
+        
+            
+        
+            
+        <li class="nav-list-item"><a href="/about">About</a></li>
+            
+        
+    </ul>
+</header>
+<div class="sidebar">
+    
+            
+    <ul class="main-menu">
+        <li class="main-menu-item"><a href="/">Home</a></li>
+        
+            
+        
+            
+        <li class="main-menu-item"><a href="/about">About</a></li>
+            
+        
+    </ul>
+</div>
+
+<!-- <h1 class="blog-title">The 실리콘밸리 외노자 이야기 Blog</h1> -->
+
+			
+<article class="article-main" itemscope itemprop="blogPost">
+    <div class="main">
+        <div class="articleCon">
+            <header class="article-header">
+                <h1 itemprop="name">
+                    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li></ul>
+                    <a href="/2017/09/07/deploy-using-nodejs/" class="article-title">nodeJS로 간단한 Deploy Script 만들기</a>
+                </h1>
+            </header>
+            <!-- 
+<div class="bookmark" id="bookmark">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#준비물"><span class="toc-text">준비물</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#플로우"><span class="toc-text">플로우</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#현재-빌드-정보-가져오기"><span class="toc-text">현재 빌드 정보 가져오기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#빌드-결과물-압축하기"><span class="toc-text">빌드 결과물 압축하기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh2-접속-정보-받기"><span class="toc-text">ssh2 접속 정보 받기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh2-접속하기"><span class="toc-text">ssh2 접속하기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#프로젝트-디렉토리-확인-하기"><span class="toc-text">프로젝트 디렉토리 확인 하기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#오래된-버전-삭체"><span class="toc-text">오래된 버전 삭체</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#업로드하기"><span class="toc-text">업로드하기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#압축-풀기"><span class="toc-text">압축 풀기</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#심링크-업데이트"><span class="toc-text">심링크 업데이트</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#package-json-업데이트"><span class="toc-text">package.json 업데이트</span></a></li></ol>
+</div>
+
+             -->
+            <div class="article-meta">
+                <div class="article-dateTime">
+    <a href="/2017/09/07/deploy-using-nodejs/" class="article-date">
+        <time datetime="Sep 7th 2017" itemprop="datePublished">
+            Sep 7th 2017
+        </time>
+    </a>
+</div>
+
+            </div>
+            <div class="article-inner">
+                <div class="article-entry" itemprop="articleBody">
+                    <p>요즘은 AWS CodeDeploy나 Jenkin등을 이용해 간단한 Deploy tool을 이용한다.<br>이들을 이용하면 간단히 테스트를 붙여 돌릴 수도 있고 버전관리도 쉽게 가능하여 개인적으로도 매우 선호한다.<br>하지만 현 프로젝트를하며 위의 툴을 사용하려니 문제를 만났다.</p>
+<ol>
+<li>내부망에서만 접속가능</li>
+<li>유지비가 저렴해야함</li>
+<li>구축하는데 너무 많은 시간을 투자 하지 말 것</li>
+<li>이미 있는 서버를 사용할 것</li>
+</ol>
+<p>우선 나는 젠킨스를 사용만 해봤지 설치나 관리를 해본적이 없으므로 패스<br>이미 있는 서버는 ssh 관리자 계정만 있는 상태라 코드 디플로이 연동이 불가능<br>위와 같은 이유로 Deploy Script를 만들게 된다.</p>
+<hr>
+<h1 id="준비물"><a href="#준비물" class="headerlink" title="준비물"></a>준비물</h1><p>node script이니 nodejs는 당연이 필요하고<br>모듈로는 세 가지가 필요하다.</p>
+<pre><code>npm install --save ssh2
+npm install --save prompt
+npm install --save archiver
+</code></pre><p>사전에 프로젝트를 빌드시키는 스크립트는 따로 있어야 한다.<br>빌드 스크립트는 프레임웍마다 다르니 패스.</p>
+<hr>
+<h1 id="플로우"><a href="#플로우" class="headerlink" title="플로우"></a>플로우</h1><p>빌드된 파일들을 zip으로 압축하여 서버에 업로드 시킨다.<br>빌드파일명은 <code>날짜-GitHash.zip</code>으로 약속한다.<br>압축을 해당 프로젝트 디렉토리의 압축파일명과 같은 디렉토리에 푼다.<br>웹페이지로 연결시켜줄 심링크를 최근 디렉토리로 업데이트 시킨다.</p>
+<hr>
+<h1 id="현재-빌드-정보-가져오기"><a href="#현재-빌드-정보-가져오기" class="headerlink" title="현재 빌드 정보 가져오기"></a>현재 빌드 정보 가져오기</h1><p>파일명, 디렉토리명 등을 관리하는 <code>PUBLISH_INFO.js</code>를 따로 만든다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PUBLISH_INFO.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proc = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"><span class="comment">// 마지막 커밋의 날짜</span></span><br><span class="line"><span class="keyword">const</span> date = proc.execSync(<span class="string">`git log --date=format:%b%d --pretty=tformat:%cd -1`</span>).toString().trim();</span><br><span class="line"><span class="comment">// 마지막 커밋의 Hash</span></span><br><span class="line"><span class="keyword">const</span> hash = proc.execSync(<span class="string">`git log --pretty=tformat:%h -1`</span>).toString().trim();</span><br><span class="line"><span class="comment">// 현재 브랜치</span></span><br><span class="line"><span class="keyword">const</span> branch = proc.execSync(<span class="string">'git branch | grep \\* | cut -d \' \' -f2-'</span>).toString().replace(<span class="string">'feature/'</span>, <span class="string">''</span>).trim();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = branch.split(<span class="string">'/'</span>);</span><br><span class="line"><span class="keyword">let</span> dir = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">let</span> dir = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">if</span> (arr.length &gt; <span class="number">1</span> &amp;&amp; arr[<span class="number">0</span>] === <span class="string">'feature'</span>) &#123;</span><br><span class="line">  dir = arr[<span class="number">1</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  dir = arr[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  dir, <span class="comment">// 브랜치명으로 프로젝트 디렉토리를 관리한다.</span></span><br><span class="line">  filename: date + <span class="string">'-'</span> + hash,</span><br><span class="line">  date,</span><br><span class="line">  hash,</span><br><span class="line">  branch</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="빌드-결과물-압축하기"><a href="#빌드-결과물-압축하기" class="headerlink" title="빌드 결과물 압축하기"></a>빌드 결과물 압축하기</h1><p>빌드 결과물을 압축하는 <code>zip.js</code>를 만든다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// zip.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> archiver = <span class="built_in">require</span>(<span class="string">'archiver'</span>)</span><br><span class="line"><span class="keyword">const</span> publishInfo = <span class="built_in">require</span>(<span class="string">'./PUBLISH_INFO'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'\nCreating .zip file...'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fileName = publishInfo.filename;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> output = fs.createWriteStream(fileName + <span class="string">'.zip'</span>);</span><br><span class="line"><span class="keyword">var</span> archive = archiver(<span class="string">'zip'</span>);</span><br><span class="line"></span><br><span class="line">output.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 압축 완료</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Archive has been created.'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'File size: '</span> + archive.pointer() + <span class="string">' total bytes'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">archive.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> err;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">archive.pipe(output);</span><br><span class="line"></span><br><span class="line">archive.bulk([</span><br><span class="line">    &#123; <span class="attr">expand</span>: <span class="literal">true</span>, <span class="attr">src</span>: [<span class="string">'**/*'</span>, <span class="string">'!*.zip'</span>], <span class="attr">dest</span>: fileName &#125;</span><br><span class="line">]).finalize();</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="ssh2-접속-정보-받기"><a href="#ssh2-접속-정보-받기" class="headerlink" title="ssh2 접속 정보 받기"></a>ssh2 접속 정보 받기</h1><p>ssh에 접속하여 진행되는 나머지 함수들은 <code>deploy.js</code>에 작성한다.<br>서버 접속 계정 정보는 따로 파일에서 관리하게 되면 아무래도 보안상 안전하지 않으므로<br>터미널에서 입력을 받아 스크립트를 내에서만 들고 있도록 한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// prompt는 터미덜에서 사용자의 입력값을 받을 수 있도록 해준다.</span></span><br><span class="line"><span class="keyword">const</span> prompt = <span class="built_in">require</span>(<span class="string">'prompt'</span>);</span><br><span class="line">prompt.start();</span><br><span class="line"><span class="comment">// 서버 계정의 아이디와 비밀번호를 받아온다.</span></span><br><span class="line">prompt.get([</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'username'</span>,</span><br><span class="line">    <span class="built_in">require</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'password'</span>,</span><br><span class="line">    hidden: <span class="literal">true</span>,</span><br><span class="line">    <span class="built_in">require</span>: <span class="literal">true</span>,</span><br><span class="line">    replace: <span class="string">'*'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">], (err, result) =&gt; &#123;</span><br><span class="line">  prompt.stop();</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 사용자의 입력 값이 성공적으로 받아졌다.</span></span><br><span class="line">  <span class="comment">// 서버를 연결한다.</span></span><br><span class="line">  connectToServer(result.username, result.password);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="ssh2-접속하기"><a href="#ssh2-접속하기" class="headerlink" title="ssh2 접속하기"></a>ssh2 접속하기</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 클라이언트 변수는 서버 접속 뿐 아니라 여려 프로세스 처리에 사용되므로 전역으로 관리한다.</span></span><br><span class="line"><span class="keyword">const</span> Client = <span class="built_in">require</span>(<span class="string">'ssh2'</span>).Client;</span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Client();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 파일 및 디텍토리 명 또한 업로드 및 압축 관리 등 여러 프로세스에서 사용 된다.</span></span><br><span class="line"><span class="keyword">const</span> PUBLISH_DESTINATION = <span class="string">'웹루트 디렉토리'</span>;</span><br><span class="line"><span class="keyword">const</span> branchDir = PUBLISH_DESTINATION + <span class="built_in">require</span>(<span class="string">'./PUBLISH_INFO'</span>).dir;</span><br><span class="line"><span class="keyword">const</span> fileName = <span class="built_in">require</span>(<span class="string">'./PUBLISH_INFO'</span>).filename;</span><br><span class="line"><span class="keyword">const</span> releaseDir = branchDir + <span class="string">'/'</span> + fileName;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connectToServer</span>(<span class="params">username, password</span>) </span>&#123;</span><br><span class="line">  c.once(<span class="string">'ready'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    c.sftp(<span class="function"><span class="keyword">function</span>(<span class="params">err, sftp</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 서버 접속 성공!!!!</span></span><br><span class="line">      sftp.readdir(PUBLISH_DESTINATION, <span class="function"><span class="keyword">function</span>(<span class="params">err, list</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 웹루트가 존재 하는 경우 해당 브랜치 디렉토리를 확인한다.</span></span><br><span class="line">        searchBranchDir(sftp);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> destination = &#123;</span><br><span class="line">    host: <span class="string">'서버 호스트 주소'</span>,</span><br><span class="line">    port: <span class="string">'22'</span>,</span><br><span class="line">    username,</span><br><span class="line">    password,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  c.connect(destination);</span><br><span class="line">  <span class="comment">// ssh2 서버 접속</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="프로젝트-디렉토리-확인-하기"><a href="#프로젝트-디렉토리-확인-하기" class="headerlink" title="프로젝트 디렉토리 확인 하기"></a>프로젝트 디렉토리 확인 하기</h1><p>이미 존재하는 브랜치 있지만 신생 브랜치의 경우 디렉토리 자체가 없는 경우가 있다.<br>이 경우를 위해 디렉토리가 존재하는지 확인 하고 없는 경우 새로 생성한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchBranchDir</span>(<span class="params">sftp</span>) </span>&#123;</span><br><span class="line">  sftp.readdir(branchDir, (err, list) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="comment">// 브랜치 디렉토리가 없는 경우 새로 생성한다.</span></span><br><span class="line">      sftp.mkdir(branchDir);</span><br><span class="line">      searchBranchDir(sftp);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 업로드 된지 오래된 버전들을 삭제한다.</span></span><br><span class="line">    removeOldReleases(sftp, list);</span><br><span class="line">    <span class="comment">// 현재 압축한 파일을 업로드한다.</span></span><br><span class="line">    uploadArchiveFile(sftp);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="오래된-버전-삭체"><a href="#오래된-버전-삭체" class="headerlink" title="오래된 버전 삭체"></a>오래된 버전 삭체</h1><p>여러가지 브랜치들이 한 서버로 업로드 하다보니<br>파일들이 쌓이고 쌓여 메모리 부족을 일으킬 수 있으므로<br>브랜치당 적정 개수의 버전들만 남기고 오래된 것은 삭제한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeOldReleases</span>(<span class="params">sftp, files</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (files.length &gt; <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> sortedList = files.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 파일 수정 날짜를 확인하여 소팅한다.</span></span><br><span class="line">      <span class="keyword">return</span> a.attrs.mtime &gt; b.attrs.mtime;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; sortedList.length - <span class="number">6</span>; i++) &#123;</span><br><span class="line">      <span class="comment">// 최근 5개를 제외한 폴더를 제거한다.</span></span><br><span class="line">      <span class="keyword">const</span> fn = sortedList[i].filename;</span><br><span class="line">      <span class="comment">// 파일 제거는 sftp로 불가능하므로 직접 코맨드 명령을 보낸다.</span></span><br><span class="line">      c.exec(<span class="string">'rm -Rf '</span> + branchDir + <span class="string">'/'</span> + fn, &#123;&#125;, (err) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="built_in">console</span>.error(err);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'- Removed'</span>, branchDir + <span class="string">'/'</span> + fn);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="업로드하기"><a href="#업로드하기" class="headerlink" title="업로드하기"></a>업로드하기</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadArchiveFile</span>(<span class="params">sftp</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 로컬 읽기 스트림 생성</span></span><br><span class="line">  <span class="keyword">const</span> readStream = <span class="built_in">require</span>(<span class="string">'fs'</span>).createReadStream(fileName + <span class="string">'zip'</span>);</span><br><span class="line">  <span class="comment">// 서버 쓰기 스트림 생성</span></span><br><span class="line">  <span class="keyword">const</span> writeStream = sftp.createWriteStream(releaseDir + <span class="string">'.zip'</span>);</span><br><span class="line"></span><br><span class="line">  writeStream.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 업로드 완료!!</span></span><br><span class="line">    <span class="built_in">console</span>.clear();</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">'* Created archive file...'</span>);</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">'* Completed uploading "'</span> + fileName + <span class="string">'.zip" file to "'</span> + branchDir + <span class="string">'"'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 압축 풀기</span></span><br><span class="line">    unzipArchive(sftp);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">  writeStream.on(<span class="string">'drain'</span>, (...arg) =&gt; &#123;</span><br><span class="line">    flag = !flag;</span><br><span class="line">    <span class="built_in">console</span>.clear();</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">'* Created archive file...'</span>);</span><br><span class="line">    <span class="comment">// 업로드 진행중임을 표시한다.</span></span><br><span class="line">    <span class="comment">// 콘솔이 멈춰있는 것을 방지하기 위해 약간의 다이나믹을 추가한다.</span></span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">      <span class="built_in">console</span>.info(<span class="string">'\ Uploading "'</span> + fileName + <span class="string">'.zip" file to "'</span> + branchDir + <span class="string">'"'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.info(<span class="string">'| Uploading "'</span> + fileName + <span class="string">'.zip" file to "'</span> + branchDir + <span class="string">'"'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 업로드 시작</span></span><br><span class="line">  readStream.pipe( writeStream );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="압축-풀기"><a href="#압축-풀기" class="headerlink" title="압축 풀기"></a>압축 풀기</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unzipArchive</span>(<span class="params">sftp</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.info(<span class="string">'* Unziping "'</span> + fileName + <span class="string">'.zip" on the server);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // 압축풀기는 sftp에서 지원하지 않는다.</span></span><br><span class="line"><span class="string">  // 클라이언트에 직접 코맨드 명렬을 보낸다.</span></span><br><span class="line"><span class="string">  const command = `cd $&#123;branchDir&#125;; unzip -o $&#123;fileName&#125;.zip`;</span></span><br><span class="line"><span class="string">  c.exec(command, &#123; pty: true &#125;, (err, stdio) =&gt; &#123;</span></span><br><span class="line"><span class="string">    stdio.on('</span>data<span class="string">', (data) =&gt; &#123;</span></span><br><span class="line"><span class="string">      // 압축이 풀리는 중, 어떤 파일이 풀리는지 출력한다.</span></span><br><span class="line"><span class="string">      console.log(data.toString());</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">    stdio.on('</span>exit<span class="string">', function(code, signal) &#123;</span></span><br><span class="line"><span class="string">      console.info(`* Complete unziping "$&#123;fileName&#125;.zip" on the server`);</span></span><br><span class="line"><span class="string">      // 압축 풀기 완료!!</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      createSymlink(sftp);</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="심링크-업데이트"><a href="#심링크-업데이트" class="headerlink" title="심링크 업데이트"></a>심링크 업데이트</h1><p>웹페이지로 연결시켜줄 심링크를 최근 디렉토리로 업데이트 시킨다.<br>본인의 현재 프로젝트의 경우 <code>latest</code>로 심링크를 명명하였다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deploy.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSymlink</span>(<span class="params">sftp</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    sftp.symlink(releaseDir, branchDir + <span class="string">'/latest'</span>);</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">`* Complete creating symlink "<span class="subst">$&#123;branchDir&#125;</span>/latest"`</span>);</span><br><span class="line">    <span class="comment">// 심링크 생성 완료!</span></span><br><span class="line">    <span class="comment">// 클라이언트 접속을 종료한다.</span></span><br><span class="line">    c.end();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 기존 심링크가 있는지 확인 한다.</span></span><br><span class="line">  sftp.readdir(branchDir + <span class="string">'/latest'</span>, (err, list) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="comment">// 기존 심링크가 없는 경우 그냥 심링크를 생성한다.</span></span><br><span class="line">      run();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 기존 심링크가 있는 경우, 기존 것을 삭제하고 새로 생성한다.</span></span><br><span class="line">      sftp.unlink(branchDir + <span class="string">'/latest'</span>, () =&gt; &#123;</span><br><span class="line">        run();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="package-json-업데이트"><a href="#package-json-업데이트" class="headerlink" title="package.json 업데이트"></a>package.json 업데이트</h1><p>npm 명령어 추가를 위해 package.json파일을 업데이트한다.</p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;zip&quot;: &quot;node build/zip.js&quot;,
+  &quot;deploy&quot;: &quot;node build/deploy.js&quot;,
+},
+</code></pre><p>차후 빌드 이후 <code>npm run zip; npm run deploy</code> 코맨드 명령을 내리면<br>압축부터 디플로이까지 한 줄로 간편히 해결된다.</p>
+<hr>
+<p>여러가지 에러 케이스들을 방어하지 않았다.<br>(팀내에서만 작게 사용하는 경우기도 하고, 사실 귀찮다…)<br>접속 정보를 잘 못입력하여 접속에 실패한 경우를 제외하고는<br>아직까지 에러케이스를 만나보지 않았다.<br>차후 시간이 좀 되면 node module로 따로 빼고 싶긴하다.</p>
+<hr>
+
+                </div>
+                <div class="article-tags">
+                    <a class="article-tags-link" href="/tags/Intergration/">Intergration</a>, <a class="article-tags-link" href="/tags/nodejs/">nodejs</a>, <a class="article-tags-link" href="/tags/개발자/">개발자</a>
+                </div>
+                
+<nav id="article-nav">
+  
+    <a href="/2017/09/26/rofyddl2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">
+        
+          용이 되고싶었다 (2) >
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/01/network/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> < 인맥의 중요성</div>
+    </a>
+  
+</nav>
+
+
+            </div>
+        </div>
+        
+            <div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//im-mota-github-io.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//im-mota-github-io.disqus.com/count.js" async></script>
+
+        
+        
+    </div>
+
+    
+<div class="post-list">
+  
+    
+  
+    
+    <div class= "category-item">
+    <h3>work</h3>
+      
+        
+        <a href="/2017/10/11/ux-engineer/"><ul>UX 엔지니어가 뭔가요?</ul><sub class="date"><sup>Oct 11th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/08/21/company-shopping/"><ul>이직 쇼핑 노하우 공개</ul><sub class="date"><sup>Aug 21st 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/08/10/visa/"><ul>비자</ul><sub class="date"><sup>Aug 10th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/08/29/how-to-write-a-resume/"><ul>실리콘밸리에서 이력서쓰기 첫걸음</ul><sub class="date"><sup>Aug 29th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/08/09/interview101/"><ul>실리콘 벨리 인터뷰 101</ul><sub class="date"><sup>Aug 9th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/09/01/network/"><ul>인맥의 중요성</ul><sub class="date"><sup>Sep 1st 2017</sup></sub></a>
+        
+      
+    </div>
+    
+  
+    
+    <div class= "category-item">
+    <h3>life</h3>
+      
+        
+        <a href="/2017/08/07/Intro/"><ul>안녕하세요</ul><sub class="date"><sup>Aug 7th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/08/08/rofyddl/"><ul>용이 되고싶었다 (1)</ul><sub class="date"><sup>Aug 8th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2017/09/26/rofyddl2/"><ul>용이 되고싶었다 (2)</ul><sub class="date"><sup>Sep 26th 2017</sup></sub></a>
+        
+      
+        
+        <a href="/2018/08/17/settle-in-bay/"><ul>실리콘 밸리 정착하기</ul><sub class="date"><sup>Aug 17th 2018</sup></sub></a>
+        
+      
+    </div>
+    
+  
+    
+    <div class= "category-item">
+    <h3>Javascript</h3>
+      
+        
+          <a class="selected" href="/2017/09/07/deploy-using-nodejs/"><ul>nodeJS로 간단한 Deploy Script 만들기</ul><sub class="date"><sup>Sep 7th 2017</sup></sub></a>
+        
+      
+    </div>
+    
+  
+</div>  
+
+</article> 
+
+
+
+		</div>
+		<div id="heart"></div>
+
+    <footer class="blog-footer" id="blog-footer">
+        <div id="footer-info" class="inner">
+            Inherited theme from <a href="https://github.com/yzzting/hexo-theme-MyFairLady" target="_blank">MyFairLady</a>
+        </div>
+    </footer>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/toTop.js"></script>
+    <script src="/js/bookmark.js"></script>
+	</body>
+	</html>
