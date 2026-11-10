@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sun Mota — Design Systems &amp; Frontend Engineer</title>
-  <meta name="description" content="Sun (Eunsun) Mota builds accessible design systems and frontend platforms, and ships products end to end. 18 years across LG, Samsung, Roku, Verkada and Alaska Airlines.">
-  <meta property="og:title" content="Sun Mota — Design Systems &amp; Frontend Engineer">
-  <meta property="og:description" content="Accessible design systems, frontend platforms, and products built end to end.">
+  <title>Sun Mota — Design Engineer, Design Systems &amp; Accessibility</title>
+  <meta name="description" content="Sun (Eunsun) Mota is a design engineer who builds accessible design systems and interfaces. 18 years across LG, Samsung, Roku, Verkada and Alaska Airlines.">
+  <meta property="og:title" content="Sun Mota — Design Engineer">
+  <meta property="og:description" content="Accessible design systems and interfaces, from prototype to production.">
   <meta property="og:type" content="website">
   <meta name="color-scheme" content="light dark">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,7 @@
   <link rel="stylesheet" href="/assets/site.css">
   <script>
     (function () {
-      var t = localStorage.getItem('theme');
-      if (t) document.documentElement.dataset.theme = t;
+      try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     })();
   </script>
 </head>
@@ -29,9 +28,9 @@
       <nav aria-label="Primary">
         <ul class="nav">
           <li><a href="#work">Work</a></li>
+          <li><a href="#live">Live demo</a></li>
           <li><a href="#cases">Case studies</a></li>
           <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <button class="theme" type="button" aria-label="Switch color theme" aria-pressed="false">
@@ -44,33 +43,32 @@
     <!-- Hero -->
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero__grid">
-      <div>
-      <p class="kicker">Sun (Eunsun) Mota, Atlanta</p>
-      <h1 id="hero-title" class="display">I build the systems that let teams ship <em>accessible, well-crafted UI</em>, and lately, whole products.</h1>
-      <p class="lede">Design systems and frontend engineer with 18 years across LG, Samsung, Roku, Verkada and Alaska Airlines. I started as a UX designer, founded and managed a UX Engineering team, and have founded two companies. I work where design, engineering and the business meet.</p>
-      <div class="cta">
-        <a class="btn btn--solid" href="#work">See the work</a>
-        <a class="btn" href="https://www.linkedin.com/in/eunsunmota/">LinkedIn</a>
-        <a class="btn" href="https://github.com/sun-mota">GitHub</a>
-      </div>
-      </div>
+        <div>
+          <p class="kicker">Sun (Eunsun) Mota · Design Engineer · Atlanta</p>
+          <h1 id="hero-title" class="display">I build the systems that let teams ship <em>accessible, well-crafted UI</em>.</h1>
+          <p class="lede">I've spent 18 years between design and code. I started as a UX designer, built more than 100 prototypes as Roku's founding UX engineer, and now work on the open-source Auro Design System at Alaska Airlines. I care about the parts users feel: focus, keyboard, motion, small screens, and getting the details right.</p>
+          <div class="cta">
+            <a class="btn btn--solid" href="#live">Try the components</a>
+            <a class="btn" href="https://www.linkedin.com/in/eunsunmota/">LinkedIn</a>
+            <a class="btn" href="https://github.com/sun-mota">GitHub</a>
+          </div>
+        </div>
 
-      <aside class="now" aria-labelledby="now-title">
-        <h2 id="now-title" class="now__title">Currently</h2>
-        <ul>
-          <li><span class="dot" aria-hidden="true"></span><div><strong>Auro Design System</strong><p>Owning form components and accessibility at Alaska Airlines.</p></div></li>
-          <li><span class="dot" aria-hidden="true"></span><div><strong>Listriva</strong><p>Building a self-serve product with AI coding agents.</p></div></li>
-          <li><span class="dot dot--open" aria-hidden="true"></span><div><strong>Open to</strong><p>Staff design systems, frontend platform, EM and founding-team roles.</p></div></li>
-        </ul>
-      </aside>
+        <aside class="now" aria-labelledby="now-title">
+          <h2 id="now-title" class="now__title">Currently</h2>
+          <ul>
+            <li><span class="dot" aria-hidden="true"></span><div><strong>Auro Design System</strong><p>Form components and accessibility at Alaska Airlines.</p></div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><strong>Listriva</strong><p>A product I designed and shipped myself, built with AI coding agents.</p></div></li>
+            <li><span class="dot dot--open" aria-hidden="true"></span><div><strong>Open to</strong><p>Staff and principal design engineering roles.</p></div></li>
+          </ul>
+        </aside>
       </div>
 
       <dl class="stats">
-        <div><dt>Years building UI</dt><dd>18</dd></div>
-        <div><dt>Design systems shipped</dt><dd>5</dd></div>
-        <div><dt>PRs to Auro (Alaska)</dt><dd>395</dd></div>
-        <div><dt>Companies founded</dt><dd>2</dd></div>
-        <div><dt>US patent</dt><dd>1</dd></div>
+        <div><dt>Years between design and code</dt><dd>18</dd></div>
+        <div><dt>Design systems worked on</dt><dd>5</dd></div>
+        <div><dt>Repos in one API rollout</dt><dd>37</dd></div>
+        <div><dt>Prototypes built at Roku</dt><dd>100+</dd></div>
       </dl>
     </section>
 
@@ -78,7 +76,7 @@
     <section id="work" class="section wrap" aria-labelledby="work-title">
       <header class="section__head">
         <h2 id="work-title" class="title">Selected work</h2>
-        <p class="section__note">Four projects that show the range: deep design system work, platform leadership, and one product built end to end.</p>
+        <p class="section__note">Design system work at scale, and a product I designed and shipped end to end.</p>
       </header>
 
       <div class="work">
@@ -88,16 +86,16 @@
             <p class="role">Senior Frontend Engineer</p>
           </div>
           <h3 class="card__title">Auro Design System</h3>
-          <p>The open-source Web Components library behind Alaska and Hawaiian Airlines' web products. I built and own <strong>auro-formkit</strong>, the most complex package: input, select, combobox, datepicker, counter and menu, all on one shared dropdown with mobile fullscreen layouts and built-in locale support.</p>
+          <p>The open-source Web Components library behind Alaska and Hawaiian Airlines' web products. I helped build <strong>auro-formkit</strong>, its form package, and wrote 197 of its pull requests: input, select, combobox, datepicker, counter and menu, all built on one shared dropdown.</p>
           <ul class="points">
-            <li>Rolled out a new component registration API to <strong>40+ repositories</strong>, then led the move from <code>ondark</code> to <code>appearance</code> across about 20 components.</li>
-            <li>Accessibility as infrastructure: focus management, keyboard support, and a test helper that runs an a11y check on every test iteration.</li>
-            <li>Rebuilt the drawer and dialog overlays on FloatingUI and the browser's native dialog. Added strict manifest checks in CI and Figma Code Connect.</li>
-            <li><strong>395 PRs, 839 commits, 333 reviews</strong> across 52 repositories.</li>
+            <li>Rolled out a new component registration API to <strong>37 repositories</strong>. Then added an <code>appearance</code> attribute and deprecated <code>ondark</code> across 15 repositories.</li>
+            <li>Built mobile fullscreen layouts, focus return and focus trapping into the dropdown, so every form control gets them.</li>
+            <li>Added an <code>iterate()</code> test helper that runs an accessibility check on every test iteration.</li>
+            <li>Rebuilt the drawer on FloatingUI and moved the dialog to the browser's native dialog and popover. Added strict manifest checks to builds, and Figma Code Connect.</li>
           </ul>
           <p class="links">
+            <a href="#live">Try it live below</a>
             <a href="https://github.com/AlaskaAirlines/auro-formkit">auro-formkit on GitHub</a>
-            <a href="https://www.npmjs.com/search?q=%40aurodesignsystem">@aurodesignsystem on npm</a>
           </p>
           <p class="stack">Lit · Web Components · Shadow DOM · SCSS tokens · FloatingUI · Web Test Runner · axe</p>
         </article>
@@ -108,14 +106,22 @@
             <p class="role">Product, design and engineering</p>
           </div>
           <h3 class="card__title">Listriva</h3>
-          <p>Ready-made marketing kits for real estate agents: five distinct social graphics, captions and a print-ready flyer for $9, or a branding kit for $15. Guest checkout, instant download, no account. I went from first commit to live payments in <strong>six days</strong>, with AI coding agents as the engineering team.</p>
+          <figure class="shots">
+            <div class="shots__row">
+              <img src="/assets/img/listriva/listing-1.webp" width="540" height="675" alt="Sample social graphic: a stone house with the headline “Limestone and arched windows on a wooded lot” and the price." loading="lazy">
+              <img src="/assets/img/listriva/listing-3.webp" width="540" height="675" alt="Sample social graphic in a quick-facts layout: price, beds, baths and square footage above a photo of the house." loading="lazy">
+              <img src="/assets/img/listriva/listing-5.webp" width="540" height="675" alt="Sample social graphic on a dark background with the question “Soaking tub or glass shower: which comes first?”" loading="lazy">
+            </div>
+            <figcaption>Sample output: three of the five graphics in one listing kit. Each uses a different layout and a different angle on the listing.</figcaption>
+          </figure>
+          <p>Ready-made marketing kits for real estate agents: five distinct social graphics, captions and a print-ready flyer for $9, or a branding kit for $15. Guest checkout, instant download, no account.</p>
           <ul class="points">
-            <li>Pivoted from a social-publishing tool held back by platform restrictions to a one-time-purchase product, and kept the earlier versions archived and recoverable.</li>
-            <li>Two design systems: a locked UI system (tokens, components, voice rules) and one for the generated graphics (5 styles, 8 layouts, rules so each kit looks different, 300 DPI print PDFs).</li>
-            <li>A <strong>truthfulness guard</strong>: generated copy can never invent facts, sales figures or awards.</li>
+            <li>Designed two systems: a locked design system for the app (tokens, components, voice rules) and one for the generated graphics (5 styles, 8 layouts, rules so each kit looks different, 300 DPI print PDFs).</li>
+            <li>A <strong>truthfulness guard</strong>: generated copy can't invent facts, sales figures or awards.</li>
+            <li>Built in under a week with Claude Code. I set the direction, then reviewed and merged every pull request.</li>
           </ul>
           <p class="links"><a href="https://www.listriva.com">listriva.com</a></p>
-          <p class="stack">SvelteKit · TypeScript · Supabase · Stripe · Vercel · Playwright · Claude Code</p>
+          <p class="stack">SvelteKit · TypeScript · Tailwind · Supabase · Stripe · Playwright</p>
         </article>
 
         <article class="card">
@@ -124,11 +130,11 @@
             <p class="role">Founding UX Engineer → Manager, UI/UX Engineering</p>
           </div>
           <h3 class="card__title">Roku UX Engineering</h3>
-          <p>Roku's only UX engineer for the first two years. I built the platform, component libraries, tools and <strong>100+ prototypes</strong> from scratch, then grew the team from 2 to 7 while staying 60% hands-on.</p>
+          <p>Roku's only UX engineer for the first two years. I built the prototyping platform, component libraries, tools and <strong>100+ prototypes</strong> from scratch. Designers and researchers used them for usability studies and executive demos. I then grew the team from 2 to 7.</p>
           <ul class="points">
             <li>UI for smart home devices, the voice assistant, Roku Pay, the new Search and the new Home screen.</li>
-            <li>Reusable patterns with built-in accessibility and localization cut development time by <strong>50%</strong>.</li>
-            <li>Co-inventor on <strong>US Patent 11,178,464</strong>, audio search results across content sources.</li>
+            <li>Reusable patterns with built-in accessibility and localization. Figma plugins for the design team.</li>
+            <li>Named on <strong>US Patent 11,178,464</strong>, audio search results in a multi-content source environment.</li>
           </ul>
           <p class="stack">Vue · React · Node.js · Storybook · AWS · Kubernetes · Figma plugins</p>
         </article>
@@ -139,19 +145,81 @@
             <p class="role">Manager, Frontend Web Foundation</p>
           </div>
           <h3 class="card__title">Web Foundation</h3>
-          <p>Led the team that makes the web platform faster and safer to build on: a monorepo setup, lazy compilation, accessibility linting and test infrastructure. Took over the company design system and its committee.</p>
+          <p>Made the web platform faster and more stable, with a better developer experience: a multi-package monorepo, lazy compilation, accessibility linting and unit test infrastructure.</p>
           <ul class="points">
-            <li>Brought in tiered end-to-end tests and a green main branch as the rule for deploys.</li>
-            <li>Led the company-wide WCAG upgrade and built i18n into the shared components.</li>
-            <li>Proposed design-freeze deadlines and API specs at kickoff so frontend stopped waiting on other teams.</li>
+            <li>Built a central design system library so accessibility and localization live in the shared components.</li>
+            <li>Led the cross-team project to bring the product up to the latest WCAG.</li>
+            <li>Defined a new project lifecycle with PM, design and other engineering managers.</li>
           </ul>
           <p class="stack">React · TypeScript · GraphQL · Storybook</p>
         </article>
       </div>
     </section>
 
+    <!-- Live demo -->
+    <section id="live" class="section section--band" aria-labelledby="live-title">
+      <div class="wrap">
+        <header class="section__head">
+          <h2 id="live-title" class="title">Live: Auro form components</h2>
+          <p class="section__note">These are the real, published components from <code>@aurodesignsystem/auro-formkit</code>, not screenshots. Try them with a keyboard (Tab, arrow keys, Enter, Escape) or a screen reader. On a phone-sized screen they open fullscreen.</p>
+        </header>
+
+        <div class="demo" data-auro-demo>
+          <div class="demo__field demo__field--wide">
+            <auro-datepicker range fullscreenbreakpoint="sm">
+              <span slot="ariaLabel.bib.close">Close calendar</span>
+              <span slot="bib.fullscreen.headline">Travel dates</span>
+              <span slot="fromLabel">Depart</span>
+              <span slot="toLabel">Return</span>
+              <span slot="bib.fullscreen.fromLabel">Depart</span>
+              <span slot="bib.fullscreen.toLabel">Return</span>
+            </auro-datepicker>
+            <p class="demo__note"><code>auro-datepicker range</code></p>
+          </div>
+          <div class="demo__field">
+            <auro-select fullscreenbreakpoint="sm">
+              <span slot="ariaLabel.bib.close">Close</span>
+              <span slot="bib.fullscreen.headline">Sort flights</span>
+              <span slot="label">Sort flights by</span>
+              <auro-menu>
+                <auro-menuoption value="price">Price</auro-menuoption>
+                <auro-menuoption value="duration">Duration</auro-menuoption>
+                <auro-menuoption value="departure">Departure time</auro-menuoption>
+                <auro-menuoption value="arrival">Arrival time</auro-menuoption>
+                <auro-menuoption value="stops">Number of stops</auro-menuoption>
+              </auro-menu>
+            </auro-select>
+            <p class="demo__note"><code>auro-select</code></p>
+          </div>
+
+          <div class="demo__field">
+            <auro-combobox fullscreenbreakpoint="sm">
+              <span slot="ariaLabel.bib.close">Close</span>
+              <span slot="ariaLabel.input.clear">Clear</span>
+              <span slot="bib.fullscreen.headline">Destination</span>
+              <span slot="label">Flying to</span>
+              <auro-menu>
+                <auro-menuoption value="ANC">Anchorage (ANC)</auro-menuoption>
+                <auro-menuoption value="ATL">Atlanta (ATL)</auro-menuoption>
+                <auro-menuoption value="HNL">Honolulu (HNL)</auro-menuoption>
+                <auro-menuoption value="LAX">Los Angeles (LAX)</auro-menuoption>
+                <auro-menuoption value="PDX">Portland (PDX)</auro-menuoption>
+                <auro-menuoption value="SEA">Seattle (SEA)</auro-menuoption>
+                <auro-menuoption value="SFO">San Francisco (SFO)</auro-menuoption>
+                <auro-menuoption static nomatch>No matching airport</auro-menuoption>
+              </auro-menu>
+            </auro-combobox>
+            <p class="demo__note"><code>auro-combobox</code></p>
+          </div>
+
+        </div>
+        <p class="demo__status" data-auro-status role="status">The components load when this section scrolls into view.</p>
+        <p class="fineprint">auro-formkit 6.2.2 · © Alaska Air · Apache-2.0. I'm one of the package's contributors. The team built it together.</p>
+      </div>
+    </section>
+
     <!-- Case studies -->
-    <section id="cases" class="section section--band" aria-labelledby="cases-title">
+    <section id="cases" class="section" aria-labelledby="cases-title">
       <div class="wrap">
         <header class="section__head">
           <h2 id="cases-title" class="title">Case studies</h2>
@@ -160,15 +228,44 @@
 
         <ol class="cases">
           <li class="case">
-            <h3 class="case__title">Paying for a framework migration with a resource “tax”</h3>
-            <p class="case__where">Roku · Vue 2 to Vue 3</p>
+            <h3 class="case__title">One dropdown under every form control</h3>
+            <p class="case__where">Alaska Airlines · auro-formkit · 2024 to 2026</p>
             <dl class="case__body">
               <dt>Situation</dt>
-              <dd>A framework bug forced workaround code into every app. Moving to Vue 3 meant every app, the platform and the libraries had to move together, and the team was already running three major projects. The migration kept losing to work with more business impact.</dd>
+              <dd>The form components had just moved into one package. Select, combobox, datepicker and counter all open a popup, and each needs the same behavior: positioning, a mobile layout, focus and keyboard handling.</dd>
               <dt>Move</dt>
-              <dd>I stopped treating it as its own project. Each roadmap project got a 25% migration “tax” in its estimate, so the migration moved forward one piece at a time inside work that was already funded.</dd>
+              <dd>I moved select, combobox and datepicker onto the package's own internal dropdown. Then I built shared behavior into that one dropdown:
+                <ul class="points">
+                  <li>a fullscreen mode on small screens</li>
+                  <li>slot names that match across components (a planned breaking rename for the datepicker)</li>
+                  <li>accessibility logic in one place</li>
+                  <li>focus return to the trigger and a focus trap while it's open</li>
+                </ul>
+              </dd>
+              <dt>Details</dt>
+              <dd>Mobile is where the edge cases live:
+                <ul class="points">
+                  <li>the virtual keyboard pushing the fullscreen view off screen</li>
+                  <li>event listeners lost when content moves into the fullscreen slots</li>
+                  <li>values not updating while fullscreen is open</li>
+                  <li>scroll needing to lock behind it</li>
+                </ul>
+                I filed and fixed each one.</dd>
               <dt>Result</dt>
-              <dd>About 7.5 weeks of migration capacity alongside 30 weeks of roadmap work, with no new headcount and no roadmap freeze.</dd>
+              <dd>Select, combobox, datepicker and counter-group share one tested set of behaviors. In May to July 2025 I filed 11 critical and serious axe violations against the package, and 9 of them are now closed.</dd>
+            </dl>
+          </li>
+
+          <li class="case">
+            <h3 class="case__title">Pivoting a product in three days</h3>
+            <p class="case__where">Listriva · product and design · 2026</p>
+            <dl class="case__body">
+              <dt>Situation</dt>
+              <dd>The first version published social posts for agents. It depended on Meta's platform, which only let approved tester accounts connect while the app was in development mode.</dd>
+              <dt>Move</dt>
+              <dd>First I shipped an Instagram-only beta with a request-access flow. Then I removed the dependency entirely: finished kits, no accounts, one-time payment, delivery by email. The old product is archived on its own branch with recovery steps.</dd>
+              <dt>Result</dt>
+              <dd>Two priced products are live with Stripe payments and delivery by email. A 3-pack, a referral program and video reels are in progress on branches.</dd>
             </dl>
           </li>
 
@@ -177,37 +274,24 @@
             <p class="case__where">Roku · prototyping</p>
             <dl class="case__body">
               <dt>Situation</dt>
-              <dd>Screensaver ad revenue was falling. Research showed people found it boring and had no reason to engage with it.</dd>
+              <dd>Screensaver ad revenue was falling. Research showed people found it boring and had no reason to engage with the ads.</dd>
               <dt>Move</dt>
               <dd>I reframed the goal from “more ads” to “more engagement”: a character you can walk through Roku City, coins you redeem through Roku Pay, ads that react when you interact, and themes from ad partners.</dd>
               <dt>Result</dt>
-              <dd>Built and tuned it as a working Roku app, then demoed it at a convention to collect real feedback before anyone committed to building it for real.</dd>
+              <dd>I built it as a Roku app, tested and tuned its performance, then presented it at a convention to collect feedback.</dd>
             </dl>
           </li>
 
           <li class="case">
-            <h3 class="case__title">Putting a dollar value on a loading placeholder</h3>
-            <p class="case__where">Roku · prioritization</p>
+            <h3 class="case__title">Paying for a framework migration with a resource “tax”</h3>
+            <p class="case__where">Roku · Vue 2 to Vue 3 · technical leadership</p>
             <dl class="case__body">
               <dt>Situation</dt>
-              <dd>Small UX improvements kept losing prioritization fights to feature work. Image loading felt frozen, but that doesn't win roadmap meetings.</dd>
+              <dd>A framework bug forced workaround code into every app. Moving to Vue 3 meant every app, the platform and the libraries had to move together. The team was already running three major projects, and the migration kept losing to work with more business impact.</dd>
               <dt>Move</dt>
-              <dd>I followed it through the customer journey: average connection speed, time to load the screen, bounce rate, satisfaction scores, and how much faster loading feels with a placeholder. Data beats gut feeling.</dd>
+              <dd>I stopped treating it as its own project. Each roadmap project got a 25% migration “tax” in its estimate, so the migration moved forward piece by piece inside work that was already funded.</dd>
               <dt>Result</dt>
-              <dd>A loading animation turned into an estimate of users kept and streaming hours gained, and it got prioritized.</dd>
-            </dl>
-          </li>
-
-          <li class="case">
-            <h3 class="case__title">Pivoting a product in three days</h3>
-            <p class="case__where">Listriva · product</p>
-            <dl class="case__body">
-              <dt>Situation</dt>
-              <dd>The first version published social posts for agents, and it depended on a platform that limited who could connect. Growth was capped by someone else's approval process.</dd>
-              <dt>Move</dt>
-              <dd>I tried an Instagram-only beta with a request-access flow first. When that still didn't fix the dependency, I moved to finished kits with no accounts, a one-time payment and delivery by email, and archived the old product so nothing was lost.</dd>
-              <dt>Result</dt>
-              <dd>Two priced products live with real payments and delivery by email, plus bundles, referrals and video reels already built in stages.</dd>
+              <dd>The plan made room for 7.5 weeks of migration work alongside 30 weeks of roadmap work, without new headcount and without freezing the roadmap.</dd>
             </dl>
           </li>
         </ol>
@@ -215,36 +299,37 @@
     </section>
 
     <!-- Principles -->
-    <section class="section wrap" aria-labelledby="how-title">
-      <header class="section__head">
-        <h2 id="how-title" class="title">How I work</h2>
-      </header>
-      <ul class="principles">
-        <li><h3>Accessibility is a default</h3><p>If people have to remember to add it, it gets forgotten. I build it into components, tests and CI so every team gets it for free.</p></li>
-        <li><h3>Fix the system, not the people</h3><p>When a team is stuck, I look at the process first: design freezes, API contracts, test tiers, how work gets funded.</p></li>
-        <li><h3>Prototype to decide</h3><p>100+ prototypes at Roku taught me that a working demo settles arguments faster than a spec does.</p></li>
-        <li><h3>Data beats gut feeling</h3><p>I translate UX work into the numbers product and leadership already track, so craft gets prioritized.</p></li>
-        <li><h3>Tell the truth in the product</h3><p>Copy, states and limits should be accurate. I'd rather list a known limitation than oversell a feature.</p></li>
-        <li><h3>Stay hands-on</h3><p>Even as a manager I kept 60% of my time in the code. It keeps my reviews honest and my estimates realistic.</p></li>
-      </ul>
+    <section class="section section--band" aria-labelledby="how-title">
+      <div class="wrap">
+        <header class="section__head">
+          <h2 id="how-title" class="title">How I work</h2>
+        </header>
+        <ul class="principles">
+          <li><h3>Accessibility is a default</h3><p>If people have to remember to add it, it gets forgotten. I build it into components, tests and CI so every team gets it for free.</p></li>
+          <li><h3>Prototype to decide</h3><p>A working demo settles a design argument faster than a spec does. I'd rather put something real in people's hands early.</p></li>
+          <li><h3>Craft lives in the edge cases</h3><p>The virtual keyboard, the focus after close, the 320px screen, the long label. That's where interfaces feel finished or don't.</p></li>
+          <li><h3>Speak design and code</h3><p>I started as a designer. I read Figma like code and code like a design file, and I build the bridge between them.</p></li>
+          <li><h3>Data beats gut feeling</h3><p>I tie UX work to the numbers product and leadership already track, so craft gets prioritized.</p></li>
+          <li><h3>Tell the truth in the product</h3><p>Copy, states and limits should be accurate. I'd rather show a known limitation than oversell a feature.</p></li>
+        </ul>
+      </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="section section--band" aria-labelledby="exp-title">
+    <section id="experience" class="section" aria-labelledby="exp-title">
       <div class="wrap">
         <header class="section__head">
           <h2 id="exp-title" class="title">Experience</h2>
         </header>
         <ol class="timeline">
-          <li><span class="when">2026</span><div><h3>Listriva <span class="muted">Founder</span></h3><p>Real estate marketing kits, built end to end.</p></div></li>
-          <li><span class="when">2024 to now</span><div><h3>Alaska Airlines <span class="muted">Senior Frontend Engineer</span></h3><p>Auro Design System, auro-formkit, accessibility, brand merger theming.</p></div></li>
-          <li><span class="when">2023 to 2024</span><div><h3>Verkada <span class="muted">Manager, Frontend Web Foundation</span></h3><p>Web platform, design system, WCAG and i18n, project lifecycle.</p></div></li>
-          <li><span class="when">2017 to 2023</span><div><h3>Roku <span class="muted">Founding UX Engineer → Manager</span></h3><p>Built UX Engineering from scratch; grew the team from 2 to 7.</p></div></li>
-          <li><span class="when">2018 to 2019</span><div><h3>Interview Hero <span class="muted">Co-founder</span></h3><p>Career coaching for tech job seekers new to Silicon Valley.</p></div></li>
+          <li><span class="when">2026</span><div><h3>Listriva <span class="muted">Founder</span></h3><p>Real estate marketing kits, designed and built end to end.</p></div></li>
+          <li><span class="when">2024 to now</span><div><h3>Alaska Airlines <span class="muted">Senior Frontend Engineer (contract)</span></h3><p>Auro Design System: form components, accessibility, theming for the Alaska and Hawaiian merger.</p></div></li>
+          <li><span class="when">2023 to 2024</span><div><h3>Verkada <span class="muted">Manager, Frontend Web Foundation</span></h3><p>Web platform, design system, WCAG and i18n.</p></div></li>
+          <li><span class="when">2017 to 2023</span><div><h3>Roku <span class="muted">Founding UX Engineer → Manager, UI/UX Engineering</span></h3><p>Built UX engineering from scratch and grew the team from 2 to 7.</p></div></li>
           <li><span class="when">2016 to 2017</span><div><h3>Samsung Research America <span class="muted">Staff UI Engineer</span></h3><p>Smart TV prototyping and a unified UI component kit.</p></div></li>
-          <li><span class="when">2015 to 2016</span><div><h3>Memebox USA · Bizlol <span class="muted">Lead Frontend Engineer</span></h3><p>Migrated an e-commerce platform off Magento with an 80% faster site.</p></div></li>
-          <li><span class="when">2011 to 2015</span><div><h3>LG Electronics <span class="muted">Frontend Engineer</span></h3><p>webOS TV UI framework and Home, shipped in 44 languages.</p></div></li>
-          <li><span class="when">2008 to 2011</span><div><h3>Actone · Virtual Builders <span class="muted">Frontend &amp; Research Engineer</span></h3><p>IPTV stock widgets, 3D building apps. Started as a UX designer.</p></div></li>
+          <li><span class="when">2015 to 2016</span><div><h3>Memebox USA · Bizlol <span class="muted">Lead Frontend Engineer</span></h3><p>Moved an e-commerce site off Magento and made it 80% faster.</p></div></li>
+          <li><span class="when">2011 to 2015</span><div><h3>LG Electronics <span class="muted">Frontend Engineer</span></h3><p>UI framework and Home for LG's 2013 and 2014 Smart TVs, in 44 languages.</p></div></li>
+          <li><span class="when">2008 to 2011</span><div><h3>Actone · Virtual Builders <span class="muted">Frontend &amp; Research Engineer</span></h3><p>IPTV stock widgets and 3D building apps. Started as a UX designer.</p></div></li>
         </ol>
 
         <div class="extras">
@@ -258,31 +343,28 @@
           </div>
           <div>
             <h3>Toolbox</h3>
-            <p>JavaScript, TypeScript, Lit and Web Components, React, Vue, Svelte, Node.js, Storybook, Figma, accessibility (WCAG) and i18n, CI/CD, AWS.</p>
-          </div>
-          <div>
-            <h3>Languages</h3>
-            <p>Korean, English, Spanish.</p>
+            <p>TypeScript, Lit and Web Components, React, Vue, Svelte, CSS and design tokens, Storybook, Figma and Code Connect, WCAG and i18n, Playwright.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section wrap contact" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="display display--sm">Let's build something people can actually use.</h2>
-      <p class="lede">Open to staff-level design systems and frontend platform roles, engineering management, and founding-team work.</p>
-      <div class="cta">
-        <a class="btn btn--solid" href="https://www.linkedin.com/in/eunsunmota/">Message me on LinkedIn</a>
-        <a class="btn" href="https://github.com/sun-mota">GitHub</a>
-        <a class="btn" href="/blog/">Old blog (Korean)</a>
+    <section id="contact" class="section section--band contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title" class="display display--sm">Let's build something people can actually use.</h2>
+        <p class="lede">Looking for a staff or principal design engineering role on a team that cares about craft and accessibility.</p>
+        <div class="cta">
+          <a class="btn btn--solid" href="https://www.linkedin.com/in/eunsunmota/">Message me on LinkedIn</a>
+          <a class="btn" href="https://github.com/sun-mota">GitHub</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="foot">
     <div class="wrap foot__inner">
-      <p>© 2026 Sun Mota</p>
+      <p>© 2026 Sun Mota · <a href="/blog/">Old blog (Korean)</a></p>
       <p>Hand-built HTML and CSS. No framework, no tracking.</p>
     </div>
   </footer>
