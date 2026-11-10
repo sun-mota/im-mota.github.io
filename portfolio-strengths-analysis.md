@@ -1,8 +1,80 @@
 # Portfolio Strengths Analysis
 
-Two parts: **Alaska Airlines (Auro Design System)** and **Listriva** (own product).
+Three parts: **Career profile (from your resumes)**, **Alaska Airlines (Auro Design System)**, and **Listriva** (your own product).
 
-# Alaska Airlines (Auro Design System) — Contribution Analysis
+# Part 1 — Career Profile (from Google Drive resumes)
+
+Sources: Sun Mota Resume 2026 and 2025 (doc and PDF), Eunsun Resume 2024 and 2023 (and the Gilroy version), 최은선 한글이력서 2022, Eunsun Resume 2018, the cover letter, and the "Eunsun Mota - Intro" deck. Contact details are left out on purpose because this repo is public.
+
+## Timeline (2008 → today, about 18 years)
+
+| Years | Company | Role | What it shows |
+|---|---|---|---|
+| 2024 – now | **Alaska Airlines** (contract via Proliance) | Senior Frontend Engineer | Open-source Auro Design System, accessibility, AI-assisted workflows, Alaska and Hawaiian brand merger |
+| 2023 – 2024 | **Verkada** | Manager, Frontend Web Foundation | Monorepo, lazy compilation, a11y linting, test infrastructure, central design system with i18n, a company-wide WCAG upgrade, project lifecycle with PM, design and EMs; core features (auth, orgs, devices, licensing) |
+| 2017 – 2023 | **Roku** | Founding UX Engineer → Manager, UI/UX Engineering | The only UXE for the first 2 years. Grew the team from 2 to 7 (frontend, fullstack, electrical). Built 100+ prototypes. UI for IoT (cameras, bulbs), voice assistant, Roku Pay, new Search, new Homescreen. Roku OS UXE in 8 languages. 30+ Agile projects a year. 50% faster development. Figma plugins. CI/CD on GitLab, AWS and Kubernetes. Defined the UXE process. |
+| 2016 – 2017 | **Samsung Research America** | Staff UI Engineer | Smart TV prototyping, a unified UI component kit, managed engineers in India |
+| 2015 – 2016 | **Memebox USA** | Lead Frontend Engineer | Tech lead and PM. Migrated off Magento with an **80% faster site**. Designed REST APIs in Go. Internal tools (marketing email generator, inventory) |
+| 2015 | **Bizlol** | Lead Frontend Engineer | Team planning; turned leadership requirements into UX |
+| 2011 – 2015 | **LG Electronics** (Seoul and Santa Clara) | Frontend Engineer / Research Engineer | Tech lead for input switching and device connection on webOS TV. UI framework and Home for the 2013 and 2014 Smart TVs. **44 languages**, right-to-left text, market-specific models |
+| 2010 – 2011 | Actone | Frontend Engineer | Real-time stock widget for the Korea Exchange IPTV system |
+| 2008 – 2010 | Virtual Builders | Research Engineer | 3D building and BIM web apps (Unity3D, Papervision3D); UX design for a 3D guide |
+| 2021 – ? | 언더워치 (Underwatch) | CTO (side venture, on the Korean resume only) | Business-model validation, platform and engine roadmap, org growth plan |
+
+**Education:** Soongsil University, Seoul. B.E. in Media Engineering and B.A. in Business Management (double major). Focus on graphics programming and design, HCI and entertainment, and marketing.
+
+**Recognition and other activities**
+- **US Patent 11,178,464**: "Audio search results in a multi-content source environment" (Roku, 2021)
+- Paper and exhibit at **ACE 2007** (Salzburg): the interactive installation "Dream of Peter Pan". Invited exhibition at Tokyo University of Technology. Undergraduate researcher in an HCI lab.
+- Applied to be an overseas mentor for Korea's SW Maestro program (2022)
+- Languages: Korean, English, Spanish
+
+## Your career story in one line
+You started as a **UX designer (2008)**, became a **prototyping and frontend engineer**, then **founded and managed a UX Engineering team**, then **ran frontend platform work**, then went **deep into design systems**, and now **founder and product builder (Listriva)**. Design, engineering and business (your double major) show up all the way through.
+
+## Strengths that show up across every resume
+1. **Design-to-engineering bridge.** Every role sits between designers, researchers and engineers: prototyping, usability studies, design systems, Figma plugins, and now Figma Code Connect.
+2. **Design systems, built many times over.** LG (enyo/moonstone), the Samsung UI kit, the Roku UXE libraries, the Verkada design system, and Alaska's Auro. Five companies, the same core skill, at a higher level each time.
+3. **Accessibility and internationalization at scale.** 44 languages at LG, 8 at Roku, voice accessibility, i18n built into the Verkada design system, and WCAG leadership at Verkada and Alaska.
+4. **Building from zero.** The only UXE at Roku for 2 years (platform, libraries, tools, 100+ prototypes, process). The Verkada web foundation. Listriva from first commit to paid product in 6 days.
+5. **Leadership without losing hands-on skill.** You managed with 60% hands-on and 40% people work, grew a team from 2 to 7, ran hiring, mentoring, OKRs and roadmaps, and still code at a high level (836+ commits at Alaska).
+6. **Decisions grounded in data and business impact.** Your Roku intro deck turns a UX change (image loading placeholders) into bounce-rate and revenue numbers (an estimated 772k users won back and $212.5M in revenue). You talk to product and executives in their terms. Listriva builds on the same instinct.
+7. **Platform and developer-experience mindset.** CI/CD and Kubernetes at Roku; monorepo, lazy compilation and linting at Verkada; monorepo, CEM checks and release workflows at Alaska.
+
+## Gaps and fixes for your current resume (2026 version)
+- **Years of experience:** it says "13+", but your career starts in Dec 2008, which makes it **~18 years**. The 2023 resume said 15. Choose one number and use it everywhere (for example "15+" if you count from LG in 2011).
+- **Strong evidence was dropped** from the 2026 version:
+  - the 50% faster development at Roku
+  - 30+ projects a year
+  - the 100+ prototypes
+  - the **patent**
+  - the 80% faster site at Memebox
+  - 44 languages at LG
+  - Figma plugins
+  - the Roku data-driven planning example
+
+  Bring the best ones back. They are your proof points.
+- **Add the GitHub numbers** to the Alaska bullets:
+  - 395 PRs and 836+ commits
+  - 333 reviews
+  - API migrations across 40+ repos
+  - built auro-formkit
+  - a11y test infrastructure
+- **Add Listriva** as "Founder / Product Engineer (2026)". It answers "can you own a product end to end?"
+- **Inconsistencies to fix:**
+  - The Roku manager start date is June 2020 in the English versions and March 2021 in the Korean one.
+  - The hands-on/management split is "40/60" in the Gilroy version and "60/40" in the others.
+  - Bizlol ends in Aug or Oct 2015 depending on the version.
+- **Typo** in the 2026 resume: "component component libraries".
+- **Name:** use one public name everywhere ("Sun (Eunsun) Mota") across the resume, LinkedIn, GitHub and this site.
+- **Decide what to do with the Underwatch CTO role** (Korean resume only). Add it as a side venture, or leave it out on purpose.
+
+## Positioning recommendation
+**"Staff Design Systems & Frontend Engineer, now also a product builder."** Lead with 18 years of design systems and accessibility (LG, Samsung, Roku, Verkada, Alaska). Back it with team-building and management at Roku and Verkada. Finish with Listriva as proof that you ship a whole product end to end with AI agents. That story fits three kinds of roles: Staff/Principal IC (design systems), Engineering Manager (frontend platform), and founding engineer or product engineer at a startup.
+
+---
+
+# Part 2 — Alaska Airlines (Auro Design System)
 
 GitHub user: `sun-mota` · Org: `AlaskaAirlines` · Period: **Oct 2024 – Nov 2026**
 
@@ -97,7 +169,7 @@ Reviewed work from 10+ teammates. The ones you reviewed most: jason-capsule42 (8
 ---
 ---
 
-# Listriva — Product, Design and Engineering Analysis
+# Part 3 — Listriva: Product, Design and Engineering
 
 Repo: `sun-mota/listriva` · Live: listriva.com · Built **Nov 5 – Nov 10, 2026** (102 commits, 19 PRs, ~20k lines of TypeScript/Svelte, 27 unit/e2e test files)
 
