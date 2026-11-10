@@ -37,7 +37,7 @@ You started as a **UX designer (2008)**, became a **prototyping and frontend eng
 2. **Design systems, built many times over.** LG (enyo/moonstone), the Samsung UI kit, the Roku UXE libraries, the Verkada design system, and Alaska's Auro. Five companies, the same core skill, at a higher level each time.
 3. **Accessibility and internationalization at scale.** 44 languages at LG, 8 at Roku, voice accessibility, i18n built into the Verkada design system, and WCAG leadership at Verkada and Alaska.
 4. **Building from zero.** The only UXE at Roku for 2 years (platform, libraries, tools, 100+ prototypes, process). The Verkada web foundation. Listriva from first commit to paid product in 6 days.
-5. **Leadership without losing hands-on skill.** You managed with 60% hands-on and 40% people work, grew a team from 2 to 7, ran hiring, mentoring, OKRs and roadmaps, and still code at a high level (836+ commits at Alaska).
+5. **Leadership without losing hands-on skill.** You managed with 60% hands-on and 40% people work, grew a team from 2 to 7, ran hiring, mentoring, OKRs and roadmaps, and still code at a high level (839 commits at Alaska).
 6. **Decisions grounded in data and business impact.** Your Roku intro deck turns a UX change (image loading placeholders) into bounce-rate and revenue numbers (an estimated 772k users won back and $212.5M in revenue). You talk to product and executives in their terms. Listriva builds on the same instinct.
 7. **Platform and developer-experience mindset.** CI/CD and Kubernetes at Roku; monorepo, lazy compilation and linting at Verkada; monorepo, CEM checks and release workflows at Alaska.
 
@@ -55,7 +55,7 @@ You started as a **UX designer (2008)**, became a **prototyping and frontend eng
 
   Bring the best ones back. They are your proof points.
 - **Add the GitHub numbers** to the Alaska bullets:
-  - 395 PRs and 836+ commits
+  - 395 PRs and 839 commits
   - 333 reviews
   - API migrations across 40+ repos
   - built auro-formkit
