@@ -49,7 +49,7 @@
           <p class="lede">I've spent 18 years between design and code. I started as a UX designer, built more than 100 prototypes as Roku's founding UX engineer, and now work on the open-source Auro Design System at Alaska Airlines. I care about the parts users feel: focus, keyboard, motion, small screens, and getting the details right.</p>
           <div class="cta">
             <a class="btn btn--solid" href="#live">Try the components</a>
-            <a class="btn" href="https://www.linkedin.com/in/eunsunmota/">LinkedIn</a>
+            <a class="btn" href="/assets/sun-mota-resume.pdf">Resume (PDF)</a>
             <a class="btn" href="https://github.com/sun-mota">GitHub</a>
           </div>
         </div>
@@ -130,9 +130,17 @@
             <p class="role">Founding UX Engineer → Manager, UI/UX Engineering</p>
           </div>
           <h3 class="card__title">Roku UX Engineering</h3>
+          <figure class="ba">
+            <div class="ba__row">
+              <div><img src="/assets/img/roku/search-before.webp" width="1024" height="576" alt="The old Roku Search screen: a letter grid on the left and a plain text list of matching titles on the right." loading="lazy"><span class="ba__tag">Before</span></div>
+              <div><img src="/assets/img/roku/search-after.webp" width="690" height="400" alt="The redesigned Roku Search screen: a compact keyboard, keyword suggestion chips, and rows of poster art for matching shows and channels." loading="lazy"><span class="ba__tag">After</span></div>
+            </div>
+            <figcaption>Roku Search, before and after the redesign I prototyped and built.</figcaption>
+          </figure>
           <p>Roku's only UX engineer for the first two years. I built the prototyping platform, component libraries, tools and <strong>100+ prototypes</strong> from scratch. Designers and researchers used them for usability studies and executive demos. I then grew the team from 2 to 7.</p>
           <ul class="points">
-            <li>UI for smart home devices, the voice assistant, Roku Pay, the new Search and the new Home screen.</li>
+            <li>Led the Search redesign from prototype to production in React. Search engagement rose <strong>40%</strong> after the first release and another <strong>10%</strong> after the second. <a href="#case-search">Case study</a></li>
+            <li>UI for smart home devices, the voice assistant, Roku Pay and the new Home screen.</li>
             <li>Reusable patterns with built-in accessibility and localization. Figma plugins for the design team.</li>
             <li>Named on <strong>US Patent 11,178,464</strong>, audio search results in a multi-content source environment.</li>
           </ul>
@@ -256,6 +264,40 @@
             </dl>
           </li>
 
+          <li class="case" id="case-search">
+            <h3 class="case__title">Making search work without a keyboard</h3>
+            <p class="case__where">Roku · Search redesign · 2021 to 2023</p>
+            <dl class="case__body">
+              <dt>Situation</dt>
+              <dd>Only 1.8% of users streamed from Search, and only certain titles got played from it. People hate typing with a TV remote. The goal was more streaming hours and more titles played from Search.</dd>
+              <dt>Move</dt>
+              <dd>I worked with design from ideation: research on users' pain points, a low-fi prototype on existing backend services, then a high-fi prototype with 2 to 3 design variants for usability research. The MVP stage had no PM and no backend support, so I set priorities with a user-journey map and built a quick mock backend. The final design added autocomplete keyword suggestions and recommended content, with image-rich screens.</dd>
+              <dt>Build</dt>
+              <dd>
+                <ul class="points">
+                  <li>I architected and built the new Search screen in React instead of BrightScript, so the prototype code could be reused.</li>
+                  <li>I built temporary components until the platform SDK team's were ready, and designed mock API responses to align the teams on the final API contract.</li>
+                  <li>Image transitions degrade gracefully on low-end devices.</li>
+                  <li>Each phase rolled out through A/B tests at 10%, then 50%, then full release.</li>
+                </ul>
+              </dd>
+              <dt>Result</dt>
+              <dd>
+                <ul class="points">
+                  <li>In prototype testing, 7 of 8 users found what they were looking for without delay, and all of them preferred the new design.</li>
+                  <li>Search engagement rose 40% after the Search screen launched (2022 Q3), and another 10% after the new detail screen (2023 Q4).</li>
+                  <li>The stream rate from Search went from 1.8% to 2.7%.</li>
+                </ul>
+              </dd>
+            </dl>
+            <figure class="ba case__fig">
+              <div class="ba__row">
+                <div><img src="/assets/img/roku/detail-before.webp" width="1280" height="720" alt="The old Roku detail screen for a TV series: a season list and a column of streaming providers over a dim background image." loading="lazy"><span class="ba__tag">Before</span></div>
+                <div><img src="/assets/img/roku/detail-after.webp" width="1280" height="720" alt="The new Roku detail screen: a full-bleed hero image with the show logo and a row of recommended episodes." loading="lazy"><span class="ba__tag">After</span></div>
+              </div>
+              <figcaption>The detail screen, shipped in the second phase.</figcaption>
+            </figure>
+          </li>
           <li class="case">
             <h3 class="case__title">Pivoting a product in three days</h3>
             <p class="case__where">Listriva · product and design · 2026</p>
@@ -278,7 +320,20 @@
               <dt>Move</dt>
               <dd>I reframed the goal from “more ads” to “more engagement”: a character you can walk through Roku City, coins you redeem through Roku Pay, ads that react when you interact, and themes from ad partners.</dd>
               <dt>Result</dt>
-              <dd>I built it as a Roku app, tested and tuned its performance, then presented it at a convention to collect feedback.</dd>
+              <dd>I built it as a Roku app, tested and tuned its performance, and presented it at a convention to collect feedback. The screensaver engineering team then turned it into a product, and it launched in 2026.</dd>
+            </dl>
+          </li>
+
+          <li class="case">
+            <h3 class="case__title">Putting a number on a loading placeholder</h3>
+            <p class="case__where">Roku · prioritization</p>
+            <dl class="case__body">
+              <dt>Situation</dt>
+              <dd>Images on the screen loaded in a static way that made the screen feel frozen. A small UX fix like this needs a business case to compete with feature work.</dd>
+              <dt>Move</dt>
+              <dd>I followed the customer journey (“I want to browse what to watch”) and gathered published research, a survey and user testing. At the US average connection speed of 18.75 Mbps, the full screen took 3.22 seconds to load, with a 13.82% bounce rate and a satisfaction score of 2.19 out of 5. With placeholders, the perceived load time dropped to 2.4 seconds and the estimated bounce rate to 10.96%, down 2.86 points.</dd>
+              <dt>Projection</dt>
+              <dd>About 772K users retained, 686.4M more streaming hours, and $212.5M in revenue. These are my own planning estimates, not measured results.</dd>
             </dl>
           </li>
 
@@ -355,7 +410,9 @@
         <h2 id="contact-title" class="display display--sm">Let's build something people can actually use.</h2>
         <p class="lede">Looking for a staff or principal design engineering role on a team that cares about craft and accessibility.</p>
         <div class="cta">
-          <a class="btn btn--solid" href="https://www.linkedin.com/in/eunsunmota/">Message me on LinkedIn</a>
+          <a class="btn btn--solid" href="mailto:eunsun.mota@gmail.com">eunsun.mota@gmail.com</a>
+          <a class="btn" href="/assets/sun-mota-resume.pdf">Resume (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/eunsunmota/">LinkedIn</a>
           <a class="btn" href="https://github.com/sun-mota">GitHub</a>
         </div>
       </div>

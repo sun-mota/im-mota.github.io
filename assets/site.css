@@ -277,3 +277,13 @@ nav { margin-left: auto; }
 @media (max-width: 760px) {
   .demo { grid-template-columns: 1fr; padding: var(--space-3); }
 }
+
+/* ---------- Before / after ---------- */
+.ba { margin: 0; }
+.ba__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.ba__row > div { position: relative; }
+.ba img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); background: #111; }
+.ba__tag { position: absolute; left: 0.5rem; bottom: 0.5rem; font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 999px; background: rgba(17,18,22,0.78); color: #fff; }
+.ba figcaption { margin-top: 0.5rem; font-size: var(--step--1); color: var(--muted); }
+.case__fig { grid-column: 1 / -1; margin-top: var(--space-2); }
+.case__body .points { margin-top: 0.25rem; }
