@@ -23,7 +23,7 @@
   }
 
   /* Highlight the nav link for the section in view */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.mast__nav a[href^="#"]'));
   if ('IntersectionObserver' in window && links.length) {
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
@@ -39,6 +39,10 @@
       var el = document.getElementById(id);
       if (el) spy.observe(el);
     });
+    var hero = document.querySelector('.hero');
+    if (hero) new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) links.forEach(function (l) { l.removeAttribute('aria-current'); });
+    }, { rootMargin: '-45% 0px -50% 0px' }).observe(hero);
   }
 
   /* Load the Auro components only when the demo is near the viewport */

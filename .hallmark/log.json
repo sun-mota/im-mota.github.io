@@ -1,0 +1,33 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "Map / Diagram",
+  "theme": "brand",
+  "axes": "light/high-contrast-serif/chromatic-indigo",
+  "hero": "Index",
+  "nav": "masthead",
+  "footer": "letter close",
+  "imagery": "product captures and live components",
+  "photos": [],
+  "entry": "index.html",
+  "fingerprint": "index-hero/map/split/showcase/split-flip/rows/statement/rows/table/letter",
+  "sections": [
+   "Index hero",
+   "Map",
+   "Split (Auro + live demo)",
+   "Showcase (Roku)",
+   "Split (Listriva)",
+   "Rows (Verkada)",
+   "Statement (principles)",
+   "Rows (case studies)",
+   "Table (experience)",
+   "Letter close"
+  ],
+  "signature": "the live Auro combobox in the index lead row",
+  "waived": [],
+  "prompt": "design engineer portfolio for hiring managers",
+  "date": "2026-11-10"
+ }
+]
